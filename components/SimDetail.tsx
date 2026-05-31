@@ -5,7 +5,9 @@ import {
   XAxis, YAxis, Tooltip, ResponsiveContainer,
   ReferenceLine, CartesianGrid, Legend,
 } from "recharts";
+import React from "react";
 import { AggregatedStats } from "@/lib/simulator";
+import { CheckLg, XLg } from "react-bootstrap-icons";
 
 interface Props {
   stats: AggregatedStats;
@@ -106,7 +108,7 @@ export default function SimDetail({ stats, profitTarget, maxDrawdown, selectedSi
 
       {sim && (
         <div className="flex gap-4 mb-4 flex-wrap">
-          <Chip label="Resultado" value={sim.outcome === "profit" ? "PROFIT ✓" : "DRAWDOWN ✗"} color={sim.outcome === "profit" ? "green" : "red"} />
+          <Chip label="Resultado" value={sim.outcome === "profit" ? "PROFIT" : "DRAWDOWN"} icon={sim.outcome === "profit" ? <CheckLg size={11}/> : <XLg size={11}/>} color={sim.outcome === "profit" ? "green" : "red"} />
           <Chip label="Días" value={`${sim.tradesNeeded}`} color="blue" />
           <Chip label="Balance Final" value={`$${sim.finalBalance.toFixed(0)}`} color={sim.finalBalance >= 0 ? "green" : "red"} />
           <Chip label="Max DD" value={`$${sim.maxDrawdownReached.toFixed(0)}`} color="red" />
@@ -192,12 +194,14 @@ export default function SimDetail({ stats, profitTarget, maxDrawdown, selectedSi
   );
 }
 
-function Chip({ label, value, color }: { label: string; value: string; color: "green" | "red" | "blue" }) {
+function Chip({ label, value, icon, color }: { label: string; value: string; icon?: React.ReactNode; color: "green" | "red" | "blue" }) {
   const c = { green: "var(--accent-green)", red: "var(--accent-red)", blue: "var(--accent-blue)" }[color];
   return (
     <div style={{ background: "var(--bg-card2)", border: "1px solid var(--border)", borderRadius: 6, padding: "0.3rem 0.7rem" }}>
       <p className="label" style={{ fontSize: "0.65rem" }}>{label}</p>
-      <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: c, fontWeight: 600 }}>{value}</p>
+      <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: c, fontWeight: 600, display: "flex", alignItems: "center", gap: 4 }}>
+        {icon}{value}
+      </p>
     </div>
   );
 }

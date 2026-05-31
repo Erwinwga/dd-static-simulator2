@@ -1,6 +1,7 @@
 "use client";
 
 import { SimulationParams } from "@/lib/simulator";
+import { Layers, CheckLg, XLg } from "react-bootstrap-icons";
 
 interface Props {
   params: SimulationParams;
@@ -29,11 +30,7 @@ export default function InputPanel({ params, raw, onSet, onSetDdMode }: Props) {
       {/* Header */}
       <div className="flex items-center gap-3 mb-1">
         <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: "rgba(61,142,255,0.15)", border: "1px solid rgba(61,142,255,0.3)" }}>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" strokeWidth="2">
-            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-            <path d="M2 17l10 5 10-5"/>
-            <path d="M2 12l10 5 10-5"/>
-          </svg>
+          <Layers size={16} color="var(--accent-blue)" />
         </div>
         <div>
           <h2 style={{ fontFamily: "'Bebas Neue', cursive", fontSize: "1.1rem", letterSpacing: "0.1em", color: "var(--text-primary)" }}>
@@ -152,10 +149,10 @@ export default function InputPanel({ params, raw, onSet, onSetDdMode }: Props) {
         <p className="label mb-2">Vista previa por día</p>
         <div className="flex justify-between text-sm">
           <span style={{ color: "var(--accent-green)", fontFamily: "'JetBrains Mono', monospace" }}>
-            ✓ +${(dailyRisk * params.riskRewardRatio).toFixed(0)}
+            <CheckLg size={12} /> +${(dailyRisk * params.riskRewardRatio).toFixed(0)}
           </span>
           <span style={{ color: "var(--accent-red)", fontFamily: "'JetBrains Mono', monospace" }}>
-            ✗ -${dailyRisk.toFixed(0)}
+            <XLg size={12} /> -${dailyRisk.toFixed(0)}
           </span>
         </div>
         <div className="flex justify-between text-sm mt-1">

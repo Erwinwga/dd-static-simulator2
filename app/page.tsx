@@ -8,6 +8,7 @@ import ResultsTable from "@/components/ResultsTable";
 import SimDetail from "@/components/SimDetail";
 import ThemeToggle from "@/components/ThemeToggle";
 import { runSimulations, SimulationParams, AggregatedStats } from "@/lib/simulator";
+import { PlayFill, BarChartLineFill } from "react-bootstrap-icons";
 
 const DEFAULT: SimulationParams = {
   riskPerTrade: 500,
@@ -158,7 +159,7 @@ export default function Home() {
                   SIMULANDO...
                 </>
               ) : (
-                "▶ EJECUTAR SIMULACIÓN"
+                <><PlayFill size={14} /> EJECUTAR SIMULACIÓN</>
               )}
             </button>
             <button
@@ -247,7 +248,7 @@ export default function Home() {
                   fontSize: "1.8rem",
                 }}
               >
-                📊
+                <BarChartLineFill size={28} style={{ color: "var(--accent-blue)" }} />
               </div>
               <div>
                 <p style={{ fontFamily: "'Bebas Neue', cursive", fontSize: "1.3rem", letterSpacing: "0.08em", color: "var(--text-muted)" }}>

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { AggregatedStats } from "@/lib/simulator";
+import { CheckLg, XLg } from "react-bootstrap-icons";
 
 interface Props {
   stats: AggregatedStats;
@@ -55,7 +56,7 @@ export default function ResultsTable({ stats, selectedSim, onSelectSim }: Props)
                   : "var(--text-muted)",
               }}
             >
-              {f === "all" ? "Todos" : f === "profit" ? "✓ Profit" : "✗ DD"}
+              {f === "all" ? "Todos" : f === "profit" ? <><CheckLg size={11}/> Profit</> : <><XLg size={11}/> DD</>}
             </button>
           ))}
         </div>
@@ -98,7 +99,7 @@ export default function ResultsTable({ stats, selectedSim, onSelectSim }: Props)
                       fontWeight: 600,
                     }}
                   >
-                    {r.outcome === "profit" ? "✓ PROFIT" : "✗ DRAWDOWN"}
+                    <span style={{ display: "flex", alignItems: "center", gap: 4 }}>{r.outcome === "profit" ? <><CheckLg size={11}/> PROFIT</> : <><XLg size={11}/> DRAWDOWN</>}</span>
                   </span>
                 </td>
                 <td style={{ color: "var(--accent-blue)" }}>{r.tradesNeeded}</td>
